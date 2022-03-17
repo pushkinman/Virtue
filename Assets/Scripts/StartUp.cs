@@ -19,10 +19,12 @@ public class StartUp : MonoBehaviour
 
     private void Start()
     {
-        _camera.SetCameraPosition(_player.GetPlayerPosition);
+        _camera.SetFollowTarget(_player.Transform);
+        _camera.SetLookAtTarget(_player.Transform);
+
+        _player.CameraTransform = _camera.Transform; 
         
         _inputManager.InputProvider.PlayerMoved += _player.Move;
         _inputManager.InputProvider.PlayerMoved += _player.Move;
-        _player.PositionChanged += _camera.SetCameraPosition;
     }
 }

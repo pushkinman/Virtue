@@ -6,7 +6,7 @@ namespace Input
 {
     public class InputProvider : MonoBehaviour, IInputProvider
     {
-        public event Action<Vector3> PlayerMoved;
+        public event Action<Vector2> PlayerMoved;
         public event Action PlayerJumped;
     
         void Update()
@@ -17,8 +17,8 @@ namespace Input
         private void CheckInput()
         {
             var xMov = UnityEngine.Input.GetAxis("Horizontal");
-            var zMov = UnityEngine.Input.GetAxis("Vertical");
-            var moveVector = new Vector3(xMov, 0, zMov);
+            var yMov = UnityEngine.Input.GetAxis("Vertical");
+            var moveVector = new Vector3(xMov, yMov);
 
             if (moveVector.magnitude != 0)
             {

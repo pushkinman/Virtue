@@ -17,14 +17,14 @@ namespace Player
 
         public void PlayMoveAnimation(Vector3 direction)
         {
-            if (direction.magnitude != 0)
-            {
-                _animator.SetBool(Forward, true);
-            }
-            else
-            {
-                _animator.SetBool(Forward, false);
-            }
+            // if (direction.magnitude != 0)
+            // {
+            //     _animator.SetBool(Forward, true);
+            // }
+            // else
+            // {
+            //     _animator.SetBool(Forward, false);
+            // }
         }
     }
 }

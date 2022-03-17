@@ -4,6 +4,9 @@ namespace Interfaces
 {
     public interface ICamera
     {
-        void SetCameraPosition(Vector3 position);
+        Transform Transform { get; }
+        
+        void SetFollowTarget(Transform target);
+        void SetLookAtTarget(Transform target);
     }
 }

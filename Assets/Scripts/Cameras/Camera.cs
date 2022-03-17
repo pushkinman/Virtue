@@ -1,3 +1,5 @@
+using System;
+using Cinemachine;
 using Interfaces;
 using UnityEngine;
 
@@ -5,11 +7,23 @@ namespace Cameras
 {
     public class Camera : MonoBehaviour, ICamera
     {
-        private readonly Vector3 _cameraOffset = new Vector3(0,2,-2);
+        [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
 
-        public void SetCameraPosition(Vector3 position)
+        public Transform Transform => cinemachineFreeLook.transform;
+
+        public void SetFollowTarget(Transform target)
         {
-            transform.position = position + _cameraOffset;
+            cinemachineFreeLook.Follow = target;
+        }
+
+        public void SetLookAtTarget(Transform target)
+        {
+            cinemachineFreeLook.LookAt = target;
+        }
+
+        private void Update()
+        {
+            Debug.Log(cinemachineFreeLook.transform.forward);
         }
     }
 }
