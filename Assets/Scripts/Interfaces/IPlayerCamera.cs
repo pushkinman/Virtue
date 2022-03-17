@@ -2,7 +2,7 @@
 
 namespace Interfaces
 {
-    public interface ICamera
+    public interface IPlayerCamera
     {
         Transform Transform { get; }
         

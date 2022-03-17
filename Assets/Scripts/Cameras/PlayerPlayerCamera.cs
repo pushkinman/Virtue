@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace Cameras
 {
-    public class Camera : MonoBehaviour, ICamera
+    public class PlayerPlayerCamera : MonoBehaviour, IPlayerCamera
     {
         [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
+        [SerializeField] private Camera camera;
 
-        public Transform Transform => cinemachineFreeLook.transform;
+        public Transform Transform => camera.transform;
 
         public void SetFollowTarget(Transform target)
         {
@@ -19,11 +20,6 @@ namespace Cameras
         public void SetLookAtTarget(Transform target)
         {
             cinemachineFreeLook.LookAt = target;
-        }
-
-        private void Update()
-        {
-            Debug.Log(cinemachineFreeLook.transform.forward);
         }
     }
 }

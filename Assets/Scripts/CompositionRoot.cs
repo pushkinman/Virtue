@@ -9,13 +9,12 @@ using Input;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
-using Camera = Cameras.Camera;
 
 public class CompositionRoot : MonoBehaviour
 {
     private static IInputManager _inputManager;
     private static IPlayer _player;
-    private static ICamera _camera;
+    private static IPlayerCamera _playerCamera;
     private static IResourceManager _resourceManager;
 
     public static IInputManager GetInputManager()
@@ -29,10 +28,10 @@ public class CompositionRoot : MonoBehaviour
         return _player ??= resourceManager.LoadResource<Player.Player, EPlayer>(EPlayer.Player);
     }
     
-    public static ICamera GetPlayerCamera()
+    public static IPlayerCamera GetPlayerCamera()
     {
         var resourceManager = GetResourceManager();
-        return _camera ??= resourceManager.LoadResource<Camera, ECamera>(ECamera.Camera);
+        return _playerCamera ??= resourceManager.LoadResource<PlayerPlayerCamera, ECamera>(ECamera.PlayerCamera);
     }
 
     private static IResourceManager GetResourceManager()

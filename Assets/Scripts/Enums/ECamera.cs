@@ -2,6 +2,6 @@
 {
     public enum ECamera
     {
-        Camera
+        PlayerCamera
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Extensions;
 using Interfaces;
 using UnityEngine;
 
@@ -30,10 +31,12 @@ namespace Player
 
         public void Move(Vector2 direction)
         {
-            // Debug.Log(CameraTransform.forward);
-            var xMov = CameraTransform.forward.x * direction.x;
-            var zMov = CameraTransform.forward.z * direction.y;
-            var moveVector = new Vector3(xMov, 0, zMov);
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward.XZPlane(), CameraTransform.forward.XZPlane(), Time.deltaTime, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+            
+            var xMov = CameraTransform.right * direction.x;
+            var zMov = CameraTransform.forward * direction.y;
+            var moveVector = (xMov + zMov).normalized.XZPlane();
             
             _characterController.Move(moveVector * Time.deltaTime * _speed);
             PositionChanged?.Invoke(transform.position);

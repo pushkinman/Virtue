@@ -8,21 +8,21 @@ public class StartUp : MonoBehaviour
 {
     private IInputManager _inputManager;
     private IPlayer _player;
-    private ICamera _camera;
+    private IPlayerCamera _playerCamera;
 
     private void Awake()
     {
         _inputManager = CompositionRoot.GetInputManager();
         _player = CompositionRoot.GetPlayer();
-        _camera = CompositionRoot.GetPlayerCamera();
+        _playerCamera = CompositionRoot.GetPlayerCamera();
     }
 
     private void Start()
     {
-        _camera.SetFollowTarget(_player.Transform);
-        _camera.SetLookAtTarget(_player.Transform);
+        _playerCamera.SetFollowTarget(_player.Transform);
+        _playerCamera.SetLookAtTarget(_player.Transform);
 
-        _player.CameraTransform = _camera.Transform; 
+        _player.CameraTransform = _playerCamera.Transform; 
         
         _inputManager.InputProvider.PlayerMoved += _player.Move;
         _inputManager.InputProvider.PlayerMoved += _player.Move;
