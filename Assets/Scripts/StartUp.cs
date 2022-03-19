@@ -29,4 +29,9 @@ public class StartUp : MonoBehaviour
         _inputManager.InputProvider.FreeLookEnabled += _player.SetFreeLookState;
         _inputManager.InputProvider.PlayerJumped += _player.TryJump;
     }
+
+    private void OnDestroy()
+    {
+        
+    }
 }

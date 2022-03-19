@@ -31,6 +31,7 @@ namespace Input
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
                 PlayerJumped?.Invoke();
+                Debug.Log(PlayerJumped?.GetInvocationList().Length);
             }
 
             if (UnityEngine.Input.GetMouseButtonDown(1))

@@ -56,7 +56,6 @@ namespace Player
 
         public void TryJump()
         {
-            Debug.Log(IsGrounded());
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), .1f) &&
                 _isJumping == false)
             {
