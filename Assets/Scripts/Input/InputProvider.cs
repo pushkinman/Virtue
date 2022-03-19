@@ -25,25 +25,23 @@ namespace Input
             {
                 moveVector *= 2;
             }
-            
+
             PlayerMoved?.Invoke(moveVector);
-            
+
             if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
                 PlayerJumped?.Invoke();
-                Debug.Log(PlayerJumped?.GetInvocationList().Length);
             }
 
             if (UnityEngine.Input.GetMouseButtonDown(1))
             {
                 FreeLookEnabled?.Invoke(true);
             }
+
             if (UnityEngine.Input.GetMouseButtonUp(1))
             {
                 FreeLookEnabled?.Invoke(false);
             }
-            
-            
         }
     }
 }

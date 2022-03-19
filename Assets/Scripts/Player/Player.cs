@@ -18,7 +18,8 @@ namespace Player
         private float _moveSpeed = 1;
         private float _turnSpeed = 5;
         private float _gravity = 10.0f;
-        private float _jumpSpeed = 200.0f;
+        private float _jumpSpeed = 5.0f;
+        private float _jumpRaycastCheckLength = 0.01f;
         private Vector3 _jumpDirection = Vector3.zero;
         private bool _isJumping = false;
         private bool _freeLookEnabled = false;
@@ -56,32 +57,28 @@ namespace Player
 
         public void TryJump()
         {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), .1f) &&
-                _isJumping == false)
-            {
-                _isJumping = true;
-                _jumpDirection.y = _jumpSpeed;
-                StartCoroutine(nameof(Jump));
-            }
-            else
-            {
-                _isJumping = false;
-            }
+            if (!IsGrounded() || _isJumping == true) return;
+            _isJumping = true;
+            _jumpDirection.y = _jumpSpeed;
+            StartCoroutine(nameof(Jump));
         }
 
         private IEnumerator Jump()
         {
-            _jumpDirection.y -= _gravity * Time.deltaTime;
-            _characterController.Move(_jumpDirection * Time.deltaTime);
-            if (!IsGrounded())
+            do
             {
+                _jumpDirection.y -= _gravity * Time.deltaTime;
+                _characterController.Move(_jumpDirection * Time.deltaTime);
                 yield return null;
-            }
+            } while (!IsGrounded());
+
+            _isJumping = false;
         }
 
         private bool IsGrounded()
         {
-            return Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), .1f);
+            return Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down),
+                _jumpRaycastCheckLength);
         }
 
         public void SetFreeLookState(bool enabled)
