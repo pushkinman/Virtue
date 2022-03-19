@@ -4,6 +4,6 @@ namespace Interfaces
 {
     public interface IPlayerAnimator
     {
-        void PlayMoveAnimation(Vector3 direction);
+        void PlayMoveAnimation(Vector2 direction);
     }
 }

@@ -25,6 +25,8 @@ public class StartUp : MonoBehaviour
         _player.CameraTransform = _playerCamera.Transform; 
         
         _inputManager.InputProvider.PlayerMoved += _player.Move;
-        _inputManager.InputProvider.PlayerMoved += _player.Move;
+        _inputManager.InputProvider.PlayerMoved += _player.PlayerAnimator.PlayMoveAnimation;
+        _inputManager.InputProvider.FreeLookEnabled += _player.SetFreeLookState;
+        _inputManager.InputProvider.PlayerJumped += _player.TryJump;
     }
 }

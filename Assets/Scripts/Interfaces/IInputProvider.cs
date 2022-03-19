@@ -7,5 +7,7 @@ namespace Interfaces
     {
         public event Action<Vector2> PlayerMoved;
         public event Action PlayerJumped;
+        public event Action<bool> FreeLookEnabled;
+
     }
 }

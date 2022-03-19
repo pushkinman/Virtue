@@ -31,7 +31,7 @@ public class CompositionRoot : MonoBehaviour
     public static IPlayerCamera GetPlayerCamera()
     {
         var resourceManager = GetResourceManager();
-        return _playerCamera ??= resourceManager.LoadResource<PlayerPlayerCamera, ECamera>(ECamera.PlayerCamera);
+        return _playerCamera ??= resourceManager.LoadResource<PlayerCamera, ECamera>(ECamera.PlayerCamera);
     }
 
     private static IResourceManager GetResourceManager()

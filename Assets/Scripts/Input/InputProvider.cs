@@ -8,7 +8,8 @@ namespace Input
     {
         public event Action<Vector2> PlayerMoved;
         public event Action PlayerJumped;
-    
+        public event Action<bool> FreeLookEnabled;
+
         void Update()
         {
             CheckInput();
@@ -20,16 +21,28 @@ namespace Input
             var yMov = UnityEngine.Input.GetAxis("Vertical");
             var moveVector = new Vector3(xMov, yMov);
 
-            if (moveVector.magnitude != 0)
+            if (UnityEngine.Input.GetKey(KeyCode.LeftShift))
             {
-                PlayerMoved?.Invoke(moveVector);
+                moveVector *= 2;
             }
-
-            var jumped = UnityEngine.Input.GetKeyDown(KeyCode.Space);
-            if (jumped == true)
+            
+            PlayerMoved?.Invoke(moveVector);
+            
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
                 PlayerJumped?.Invoke();
             }
+
+            if (UnityEngine.Input.GetMouseButtonDown(1))
+            {
+                FreeLookEnabled?.Invoke(true);
+            }
+            if (UnityEngine.Input.GetMouseButtonUp(1))
+            {
+                FreeLookEnabled?.Invoke(false);
+            }
+            
+            
         }
     }
 }

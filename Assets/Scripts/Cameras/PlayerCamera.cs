@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Cameras
 {
-    public class PlayerPlayerCamera : MonoBehaviour, IPlayerCamera
+    public class PlayerCamera : MonoBehaviour, IPlayerCamera
     {
         [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
         [SerializeField] private Camera camera;
